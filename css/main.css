@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+.gallery-container {
+    display: flex;
+    gap: 10px;
+}
+
+.gallery-img {
+    height: 200px;
+}
+
+/* BASICS */
+@import "basics/layout.css";
+/* COMPONENTS */
+@import "components/header.css";

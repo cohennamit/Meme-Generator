@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Meme Generator - Amit Cohen</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="onInit()">
+    <header class="main-header full main-layout">
+
+        <section>
+            <div class="logo">Meme Generator</div>
+            <div type="button" class="toggle-menu" onclick="toggleMenu()"></div>
+            <nav class=>
+                <ul class=>
+                    <li><a href="#">Page 1</a></li>
+                    <li><a href="#">Page 2</a></li>
+                    <li><a href="#">Page 3</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+    <section class="gallery">Gallery
+        <div class="gallery-container"></div>
+    </section>
+    <section hidden class="editor">
+        <label for="txt">Meme line:</label>
+        <input oninput="onSetLineTxt()" class="txt" type="text" name="txt" id="txt" placeholder="I'm a funny meme :D">
+        <button type="button" class="swith-line-btn" onclick="onSwitchLine()">Switch Line</button>
+        <br>
+        <label for="color">Enter line's Color:</label>
+        <input id="color" type="color" value="#ffffff" oninput="onChangeTxtColor(this.value)" />
+        <form onsubmit="onChangeFontSize(event,this)">
+            <label for="font-size">Increase/Decrease Font:</label><input title="min - 25 max - 50" type="number"
+                name="font-size" min="25" max="50" step="5" value="25">
+            <button type="submit">Change Font Size</button>
+        </form>
+        <div class="canvas-container">
+            <canvas class="canvas" width="500" height="500" style="outline: 1px solid rgb(108, 34, 34)"></canvas>
+        </div>
+    </section>
+
+    <script src="js/services/meme-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/meme-controller.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
