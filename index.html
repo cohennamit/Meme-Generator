@@ -9,14 +9,13 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body onload="onInit()">
+<body class="main-layout" onload="onInit()">
     <header class="main-header full main-layout">
-
-        <section>
+        <section class="nav flex space-between align-center">
             <div class="logo">Meme Generator</div>
             <div type="button" class="toggle-menu" onclick="toggleMenu()"></div>
             <nav class=>
-                <ul class=>
+                <ul class="flex clean-list">
                     <li><a href="#">Page 1</a></li>
                     <li><a href="#">Page 2</a></li>
                     <li><a href="#">Page 3</a></li>
@@ -24,25 +23,33 @@
             </nav>
         </section>
     </header>
-    <section class="gallery">Gallery
+
+    <section class="gallery">
         <div class="gallery-container"></div>
     </section>
     <section hidden class="editor">
-        <label for="txt">Meme line:</label>
-        <input oninput="onSetLineTxt()" class="txt" type="text" name="txt" id="txt" placeholder="I'm a funny meme :D">
-        <button type="button" class="swith-line-btn" onclick="onSwitchLine()">Switch Line</button>
-        <br>
-        <label for="color">Enter line's Color:</label>
-        <input id="color" type="color" value="#ffffff" oninput="onChangeTxtColor(this.value)" />
-        <form onsubmit="onChangeFontSize(event,this)">
-            <label for="font-size">Increase/Decrease Font:</label><input title="min - 25 max - 50" type="number"
-                name="font-size" min="25" max="50" step="5" value="25">
-            <button type="submit">Change Font Size</button>
-        </form>
-        <div class="canvas-container">
-            <canvas class="canvas" width="500" height="500" style="outline: 1px solid rgb(108, 34, 34)"></canvas>
-        </div>
+        <div class="editor-container">
+
+            <label for="txt">Meme line:</label>
+            <input oninput="onSetLineTxt()" class="txt" type="text" name="txt" id="txt"
+                placeholder="I'm a funny meme :D">
+            <button type="button" class="switch-line-btn" onclick="onSwitchLine()">Switch / Select Line</button>
+            <button type="button" class="unslct-line-btn" onclick="onUnselectLines()">Unselect Line</button>
+            <br>
+            <label for="color">Enter line's Color:</label>
+            <input id="color" type="color" value="#ffffff" oninput="onChangeTxtColor(this.value)" />
+            <br>
+            <form onsubmit="onChangeFontSize(event,this)">
+                <label for="font-size">Increase/Decrease Font:</label><input title="min - 25 max - 50" type="number"
+                    name="font-size" min="25" max="50" step="5" value="25">
+                <button type="submit">Change Font Size</button>
+            </form>
+            <br>
+            <div class="canvas-container">
+                <canvas class="canvas" width="500" height="500" style="outline: 1px solid rgb(108, 34, 34)"></canvas>
+            </div>
     </section>
+    </div>
 
     <script src="js/services/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>

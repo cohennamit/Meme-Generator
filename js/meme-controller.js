@@ -27,10 +27,32 @@ function renderMeme() {
                 y = 250
             }
             drawText(meme.lines[i].txt, x, y, i)
+            if (meme.selectedLineIdx !== -1) {
+
+                if (i === meme.selectedLineIdx) {
+                    drawLine(0, y + 22)
+                    drawLine(0, y - 22)
+                }
+            }
         }
     }
 
 
+}
+
+function drawLine(x, y) {
+    gCtx.beginPath()
+    gCtx.moveTo(x, y)
+    gCtx.lineTo(gElCanvas.width, y)
+
+    gCtx.lineWidth = 5
+    gCtx.strokeStyle = 'red'
+    gCtx.stroke()
+}
+
+function drawRect(x, y) {
+    gCtx.strokeStyle = 'orange'
+    gCtx.strokeRect(x - (0.25 * x), y - (0.5 * y), 120, 120)
 }
 
 function drawText(text, x, y, i) {
@@ -67,5 +89,11 @@ function onSwitchLine() {
     setNewSelectedLine()
     const meme = getMeme()
     const focusedText = meme.lines[meme.selectedLineIdx].txt
-    
+    renderMeme()
+
+}
+
+function onUnselectLines() {
+    unselectLines()
+    renderMeme()
 }
