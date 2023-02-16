@@ -2,11 +2,16 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: rgb(98, 98, 98);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 .gallery-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .gallery-img {
@@ -15,13 +20,62 @@
 
 .main-header {
     background-color: rgb(56, 56, 56);
+    margin-block-end: 20px;
+    height: 100px;
+}
+
+.logo {
+    color: whitesmoke;
+    font-size: 32px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    outline: black;
 }
 
 .editor-container {
     display: grid;
     justify-content: center;
+    grid-template-areas:
+        "canvas control"
+        "social  social"
+    ;
+    gap: 50px;
 }
 
 .editor-container>* {
     align-self: start;
+}
+
+.control-box {
+    grid-area: control;
+    margin: auto;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputs {
+    grid-area: social;
+    margin: auto;
+}
+
+.canvas-container {
+    grid-area: canvas;
+}
+
+@media (max-width: 900px) {
+    .editor-container {
+        grid-template-areas:
+            "control"
+            "canvas"
+            "social"
+        ;
+        gap: 10px;
+    }
+}
+
+.btn {
+    border-radius: 5px;
+    background-color: rgb(67, 67, 67);
+    border: 2px solid rgb(56, 56, 56);
+    font-weight: bold;
 }

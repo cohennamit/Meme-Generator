@@ -29,16 +29,26 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
+            idx: 0,
             txt: 'Line 1',
             size: 25,
             align: 'left',
-            color: 'white'
+            color: 'white',
+            font: 'Impact',
+            x: 250,
+            y: 30,
+            isDragged: false,
         },
         {
+            idx: 1,
             txt: 'Line 2',
             size: 25,
             align: 'left',
-            color: 'white'
+            color: 'white',
+            font: 'Impact',
+            x: 250,
+            y: 470,
+            isDragged: false,
         },
     ]
 }
@@ -72,13 +82,116 @@ function changeFontSize(newSize) {
 }
 
 function setNewSelectedLine() {
-    console.log('gMeme.selectedLineIdx', gMeme.selectedLineIdx)
+    // console.log('gMeme.selectedLineIdx', gMeme.selectedLineIdx)
     const memeLineAmount = gMeme.lines.length
-    console.log('memeLineAmount', memeLineAmount)
+    // console.log('memeLineAmount', memeLineAmount)
     if (gMeme.selectedLineIdx === memeLineAmount - 1) gMeme.selectedLineIdx = 0
     else gMeme.selectedLineIdx++
-    console.log('gMeme.selectedLineIdx', gMeme.selectedLineIdx)
+    // console.log('gMeme.selectedLineIdx', gMeme.selectedLineIdx)
 }
 function unselectLines() {
     gMeme.selectedLineIdx = -1
+    let gElLineInput = document.querySelector('.txt')
+    gElLineInput.value = 'Please Select Line'
+    renderMeme()
+}
+
+function setFont() {
+    let fontSelector = document.getElementById('font-select')
+    let selectedFont = fontSelector.options[fontSelector.selectedIndex].value
+    gMeme.lines[gMeme.selectedLineIdx].font = selectedFont
+}
+
+function lowerLine() {
+    if (gMeme.lines[gMeme.selectedLineIdx].y >= 470) return
+    gMeme.lines[gMeme.selectedLineIdx].y += 10
+}
+
+function liftLine() {
+    if (gMeme.lines[gMeme.selectedLineIdx].y <= 30) return
+    gMeme.lines[gMeme.selectedLineIdx].y -= 10
+}
+
+function canvasClicked(ev) {
+    const { offsetX, offsetY } = ev
+    // console.log('offsetX , offsetY', offsetX, offsetY)
+    const meme = getMeme()
+    // console.log('meme', meme)
+    const clickedText = gMeme.lines.find(line => {
+        const { x, y, size } = line
+        // console.log('x,y,size', x, y, +size)
+        return offsetX >= x - 250 && offsetX <= x + 250 &&
+            offsetY >= y - 20 && offsetY <= y + 20
+    })
+    if (clickedText) {
+        setSelectedLineIdx(clickedText.idx)
+    }
+    else unselectLines()
+}
+function isLineClicked(ev) {
+    const { offsetX, offsetY } = ev
+    const clickedTextIdx = gMeme.lines.findIndex(line => {
+        const { x, y } = line
+        return offsetX >= x - 250 && offsetX <= x + 250 && offsetY >= y - 20 && offsetY <= y + 20
+    })
+    // console.log('clickedText', clickedTextIdx)
+    return clickedTextIdx
+}
+
+function setLineDrag(value) {
+    if (gMeme.selectedLineIdx === -1) return
+    gMeme.lines[gMeme.selectedLineIdx].isDragged = value
+}
+
+function setSelectedLineIdx(index) {
+    gMeme.selectedLineIdx = index
+    switchLine()
+}
+
+function switchLine() {
+    let gElLine = document.querySelector('.txt')
+    const focusedText = gMeme.lines[gMeme.selectedLineIdx].txt
+    gElLine.value = focusedText
+    renderMeme()
+
+}
+
+function moveLine(dx, dy) {
+    gMeme.lines[gMeme.selectedLineIdx].y += dy
+    gMeme.lines[gMeme.selectedLineIdx].x += dx
+
+}
+
+function addLine() {
+    let newLine = createLine()
+    gMeme.lines.push(newLine)
+    console.log('gMeme', gMeme)
+}
+
+function createLine() {
+    return {
+        idx: gMeme.lines.length,
+        txt: 'New Line',
+        size: 25,
+        align: 'left',
+        color: 'white',
+        font: 'Impact',
+        x: 250,
+        y: 250,
+        isDragged: false,
+    }
+}
+
+function removeLine() {
+    if (gMeme.selectedLineIdx === -1) {
+        alert('You don\'t have any selected lines')
+    }
+    else if (gMeme.selectedLineIdx === 0 || gMeme.selectedLineIdx === 1) {
+        alert('You can not remove the first two lines of a meme - as they are the template of it. (you can delete their content if you want)')
+    } else {
+        console.log('gMeme.selectedLineIdx', gMeme.selectedLineIdx)
+        gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+        gMeme.selectedLineIdx = 0
+    }
+
 }

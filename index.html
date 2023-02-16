@@ -5,48 +5,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Meme Generator - Amit Cohen</title>
+    <title>Meme Generator - Amit Cohen</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body class="main-layout" onload="onInit()">
     <header class="main-header full main-layout">
         <section class="nav flex space-between align-center">
-            <div class="logo">Meme Generator</div>
+            <div class="logo">Meme Generator - Amit Cohen</div>
             <div type="button" class="toggle-menu" onclick="toggleMenu()"></div>
             <nav class=>
-                <ul class="flex clean-list">
-                    <li><a href="#">Page 1</a></li>
-                    <li><a href="#">Page 2</a></li>
-                    <li><a href="#">Page 3</a></li>
-                </ul>
             </nav>
         </section>
     </header>
-
     <section class="gallery">
         <div class="gallery-container"></div>
     </section>
     <section hidden class="editor">
         <div class="editor-container">
-
-            <label for="txt">Meme line:</label>
-            <input oninput="onSetLineTxt()" class="txt" type="text" name="txt" id="txt"
-                placeholder="I'm a funny meme :D">
-            <button type="button" class="switch-line-btn" onclick="onSwitchLine()">Switch / Select Line</button>
-            <button type="button" class="unslct-line-btn" onclick="onUnselectLines()">Unselect Line</button>
             <br>
-            <label for="color">Enter line's Color:</label>
-            <input id="color" type="color" value="#ffffff" oninput="onChangeTxtColor(this.value)" />
-            <br>
-            <form onsubmit="onChangeFontSize(event,this)">
-                <label for="font-size">Increase/Decrease Font:</label><input title="min - 25 max - 50" type="number"
-                    name="font-size" min="25" max="50" step="5" value="25">
-                <button type="submit">Change Font Size</button>
-            </form>
+            <div class="control-box">
+                <label for="txt">Meme line:</label>
+                <input oninput="onSetLineTxt()" class="txt" type="text" name="txt" id="txt"
+                    placeholder="Funny Meme Line">
+                <button type="button" class="btn switch-line-btn" onclick="onSwitchLine()">Switch / Select Line</button>
+                <button type="button" class="btn unslct-line-btn" onclick="onUnselectLines()">Unselect Line</button>
+                <button type="button" class="btn lift-btn" onclick="onLiftLine()">↑</button>
+                <button type="button" class="btn lower-line-btn" onclick="onLowerLine()">↓</button>
+                <br>
+                <button type="button" class="btn add-line-btn" onclick="onAddLine()">Add Line</button>
+                <button type="button" class="btn remove-line-btn" onclick="onRemoveLine()">Remove Line</button>
+                <br>
+                <label for="color">Enter line's Color:</label>
+                <input class="btn" id="color" type="color" value="#ffffff" oninput="onChangeTxtColor(this.value)" />
+                <!-- <br> -->
+                <label for="font-select">Select a Font</label>
+                <select class="btn" id="font-select" onchange="onSetFont()">
+                    <option value="Impact">Impact</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                </select>
+                <form onsubmit="onChangeFontSize(event,this)">
+                    <label for="font-size">Increase/Decrease Font:</label><input title="min - 25 max - 50" type="number"
+                        name="font-size" min="25" max="50" step="5" value="25">
+                    <button class="btn" type="submit">Change Font Size</button>
+                </form>
+            </div>
             <br>
             <div class="canvas-container">
-                <canvas class="canvas" width="500" height="500" style="outline: 1px solid rgb(108, 34, 34)"></canvas>
+                <canvas onclick=" canvasClicked(event)" class="canvas" width="500" height="500"
+                    style="outline: 1px solid rgb(108, 34, 34)"></canvas>
+            </div>
+            <div class="inputs">
+                <button class="btn upload-btn" onclick="onUploadImg()">
+                    Upload Meme to Facebook!
+                </button>
+
+                <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
             </div>
     </section>
     </div>
@@ -55,6 +70,7 @@
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/upload-from-local.js"></script>
 </body>
 
 </html>
