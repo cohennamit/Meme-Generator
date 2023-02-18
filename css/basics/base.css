@@ -263,3 +263,7 @@ body {
 .font-size-label {
     margin: auto;
 }
+
+.inputs {
+    margin-bottom: 40px;
+}
