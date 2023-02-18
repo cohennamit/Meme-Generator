@@ -1,8 +1,11 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
+    color: rgb(30, 30, 30);
     background-color: rgb(98, 98, 98);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
@@ -15,20 +18,31 @@ body {
 }
 
 .gallery-img {
+    transition: 0.25s;
+    border-radius: 5px;
     height: 200px;
 }
 
+.gallery-img:hover {
+    height: 200px;
+    border-radius: 20px;
+}
+
 .main-header {
+    width: 100%;
+    border-bottom: 4px solid rgb(30, 30, 30);
     background-color: rgb(56, 56, 56);
     margin-block-end: 20px;
-    height: 100px;
+    height: 90px;
 }
 
 .logo {
-    color: whitesmoke;
+    transition: 0.25s;
+    color: rgb(30, 30, 30);
     font-size: 32px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     outline: black;
+    cursor: pointer;
 }
 
 .editor-container {
@@ -74,8 +88,178 @@ body {
 }
 
 .btn {
-    border-radius: 5px;
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    transition: 0.2s;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(30, 30, 30);
+    border-radius: 3px;
     background-color: rgb(67, 67, 67);
     border: 2px solid rgb(56, 56, 56);
     font-weight: bold;
+}
+
+.s-btn {
+    transition: 0.2s;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(30, 30, 30);
+    border-radius: 3px;
+    background-color: rgb(67, 67, 67);
+    border: 2px solid rgb(56, 56, 56);
+    font-weight: bold;
+}
+
+.emoji-btn:hover,
+.btn:hover {
+    font-size: 1.6rem;
+    border-radius: 5px;
+    color: whitesmoke;
+    background-color: rgb(40, 40, 40);
+    border: 2px solid rgb(30, 30, 30);
+}
+
+.s-btn:hover {
+    border-radius: 5px;
+    background-color: rgb(40, 40, 40);
+    border: 2px solid rgb(30, 30, 30);
+}
+
+.emojis {
+    margin: auto;
+}
+
+.emoji-btn-container {
+    display: flex;
+}
+
+.emoji-btn {
+    height: 40px;
+    width: 40px;
+    font-size: 1.5rem;
+    margin-inline-end: 2px;
+    border-radius: 3px;
+    background-color: rgb(67, 67, 67);
+    border: 2px solid rgb(56, 56, 56);
+}
+
+.nav-li {
+    transition: 0.25s;
+    color: rgb(30, 30, 30);
+    margin-inline-end: 10px;
+    cursor: pointer;
+}
+
+.logo:hover,
+.nav-li:hover {
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+.saved {
+    display: grid;
+    justify-content: center;
+}
+
+.saved-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.saved-img {
+    border-radius: 5px;
+    height: 200px;
+}
+
+.footer {
+    text-align: center;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: rgb(56, 56, 56);
+    border-top: 4px solid rgb(30, 30, 30);
+    position: fixed;
+    padding: 5px;
+    bottom: 0;
+}
+
+.set-btn,
+.font-btn,
+.download-btn {
+    transition: 0.2s;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: rgb(30, 30, 30);
+    border-radius: 3px;
+    background-color: rgb(67, 67, 67);
+    border: 2px solid rgb(56, 56, 56);
+    text-decoration: none;
+}
+
+.set-btn:hover,
+.font-btn:hover,
+.download-btn:hover {
+    border-radius: 5px;
+    background-color: rgb(40, 40, 40);
+    border: 2px solid rgb(30, 30, 30);
+}
+
+.gallery {
+    margin-block-end: 100px;
+}
+
+.saved-area {
+    margin-block-end: 100px;
+}
+
+.about-area {
+    margin: auto;
+    width: 400px;
+}
+
+.edit-btns {
+    margin-block-start: 5px;
+    display: flex;
+    gap: 2px;
+    justify-content: space-around;
+}
+
+.add-remove-btns {
+    display: flex;
+    gap: 2px;
+    justify-content: space-around;
+}
+
+.color-font-btns {
+    margin: auto;
+    display: flex;
+    gap: 2px;
+    justify-content: space-around;
+    margin-block-end: 10px;
+}
+
+.color-font-span {
+    margin: auto;
+}
+
+.emoji-span {
+    margin: auto;
+}
+
+.font-size {
+    margin-block-start: 10px;
+    margin: auto;
+    display: flex;
+    gap: 2px;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.font-size-label {
+    margin: auto;
 }

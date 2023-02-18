@@ -4,14 +4,33 @@ let gCtxx
 let gStartPos
 const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
+let gElGallery = document.querySelector('.gallery')
+let gElEditor = document.querySelector('.editor')
+let gElSaved = document.querySelector('.saved-area')
+let gElAbout = document.querySelector('.about-area')
+
 function onInit() {
     renderGallery()
-    const elGallery = document.querySelector('.gallery')
-    const elEditor = document.querySelector('.editor')
-    elGallery.hidden = false
-    elEditor.hidden = true
+    // let elGallery = document.querySelector('.gallery')
+    // let elEditor = document.querySelector('.editor')
+    // let elSaved = document.querySelector('.saved')
+    // elGallery.hidden = false
+    // elEditor.hidden = true
+    // elSaved.hidden = true
     resizeCanvas()
     addListeners()
+    checkSavedGallery()
+    saveToStorage(KEY_GALLERY, gGallery)
+}
+
+function checkSavedGallery() {
+
+    gGallery = loadFromStorage(KEY_GALLERY)
+    if (!gGallery) {
+        gGallery = [
+            createGalleryImage('img/1.jpg')
+        ]
+    }
 }
 
 function downloadImg(elLink) {
@@ -20,7 +39,7 @@ function downloadImg(elLink) {
 }
 
 function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
+    let elContainer = document.querySelector('.canvas-container')
     gElCanvass.width = elContainer.offsetWidth
     gElCanvass.height = elContainer.offsetHeight
 }
@@ -100,4 +119,34 @@ function getEvPos(ev) {
         }
     }
     return pos
+}
+
+function revealSavedGallery() {
+    // var elGallery = document.querySelector('.gallery')
+    // var elEditor = document.querySelector('.editor')
+    // var elSaved = document.querySelector('.saved-container')
+    gElGallery.hidden = true
+    gElEditor.hidden = true
+    gElSaved.hidden = false
+    gElAbout.hidden = true
+    renderSavedGallery()
+}
+
+
+function revealGallery() {
+    // var elGallery = document.querySelector('.gallery')
+    // var elEditor = document.querySelector('.editor')
+    // var elSaved = document.querySelector('.saved-container')
+    gElGallery.hidden = false
+    gElEditor.hidden = true
+    gElSaved.hidden = true
+    gElAbout.hidden = true
+    renderGallery()
+}
+
+function revealAbout() {
+    gElGallery.hidden = true
+    gElEditor.hidden = true
+    gElSaved.hidden = true
+    gElAbout.hidden = false
 }

@@ -1,5 +1,12 @@
 'use strict'
 
+var gSavedId = 1
+
+var gGallery = [{
+    id: 0,
+    url: 'img/1.jpg'
+}]
+
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
 var gImgs = [
@@ -162,16 +169,16 @@ function moveLine(dx, dy) {
 
 }
 
-function addLine() {
-    let newLine = createLine()
+function addLine(value) {
+    let newLine = createLine(value)
     gMeme.lines.push(newLine)
     console.log('gMeme', gMeme)
 }
 
-function createLine() {
+function createLine(txt = 'New Line') {
     return {
         idx: gMeme.lines.length,
-        txt: 'New Line',
+        txt,
         size: 25,
         align: 'left',
         color: 'white',
@@ -194,4 +201,22 @@ function removeLine() {
         gMeme.selectedLineIdx = 0
     }
 
+}
+
+function saveCanvas() {
+    const canvas = document.querySelector('.canvas')
+    const dataURL = canvas.toDataURL()
+    let newGalleryItem = createGalleryImage(dataURL)
+    let gallery = loadFromStorage(KEY_GALLERY)
+    console.log('gallery', gallery)
+    gallery.push(newGalleryItem)
+    saveToStorage(KEY_GALLERY, gallery)
+    revealSavedGallery()
+}
+
+function createGalleryImage(dataURL) {
+    return {
+        id: gSavedId++,
+        url: dataURL
+    }
 }

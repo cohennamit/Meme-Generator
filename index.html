@@ -12,60 +12,127 @@
 <body class="main-layout" onload="onInit()">
     <header class="main-header full main-layout">
         <section class="nav flex space-between align-center">
-            <div class="logo">Meme Generator - Amit Cohen</div>
+            <div onclick="revealGallery()" class="logo">Meme Generator</div>
             <div type="button" class="toggle-menu" onclick="toggleMenu()"></div>
             <nav class=>
+                <ul class="clean-list flex">
+                    <li class="nav-li" onclick="revealSavedGallery()">Saved</li>
+                    <li class="nav-li" onclick="revealAbout()">About</li>
+                </ul>
             </nav>
         </section>
     </header>
-    <section class="gallery">
-        <div class="gallery-container"></div>
-    </section>
-    <section hidden class="editor">
-        <div class="editor-container">
-            <br>
-            <div class="control-box">
-                <label for="txt">Meme line:</label>
-                <input oninput="onSetLineTxt()" class="txt" type="text" name="txt" id="txt"
-                    placeholder="Funny Meme Line">
-                <button type="button" class="btn switch-line-btn" onclick="onSwitchLine()">Switch / Select Line</button>
-                <button type="button" class="btn unslct-line-btn" onclick="onUnselectLines()">Unselect Line</button>
-                <button type="button" class="btn lift-btn" onclick="onLiftLine()">↑</button>
-                <button type="button" class="btn lower-line-btn" onclick="onLowerLine()">↓</button>
-                <br>
-                <button type="button" class="btn add-line-btn" onclick="onAddLine()">Add Line</button>
-                <button type="button" class="btn remove-line-btn" onclick="onRemoveLine()">Remove Line</button>
-                <br>
-                <label for="color">Enter line's Color:</label>
-                <input class="btn" id="color" type="color" value="#ffffff" oninput="onChangeTxtColor(this.value)" />
-                <!-- <br> -->
-                <label for="font-select">Select a Font</label>
-                <select class="btn" id="font-select" onchange="onSetFont()">
-                    <option value="Impact">Impact</option>
-                    <option value="Arial">Arial</option>
-                    <option value="Times New Roman">Times New Roman</option>
-                </select>
-                <form onsubmit="onChangeFontSize(event,this)">
-                    <label for="font-size">Increase/Decrease Font:</label><input title="min - 25 max - 50" type="number"
-                        name="font-size" min="25" max="50" step="5" value="25">
-                    <button class="btn" type="submit">Change Font Size</button>
-                </form>
-            </div>
-            <br>
-            <div class="canvas-container">
-                <canvas onclick=" canvasClicked(event)" class="canvas" width="500" height="500"
-                    style="outline: 1px solid rgb(108, 34, 34)"></canvas>
-            </div>
-            <div class="inputs">
-                <button class="btn upload-btn" onclick="onUploadImg()">
-                    Upload Meme to Facebook!
-                </button>
+    <div class="main">
 
-                <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg">Download as jpeg</a>
-            </div>
-    </section>
+        <section class="gallery">Choose a template Meme to work on:
+            <div class="gallery-container"></div>
+        </section>
+        <section hidden class="editor">
+            <div class="editor-container">
+                <br>
+                <div class="control-box">
+                    <label for="txt">Meme line:</label>
+                    <input oninput="onSetLineTxt()" class="txt" type="text" name="txt" id="txt"
+                        placeholder="Funny Meme Line">
+                    <div class="edit-btns">
+                        <button title="Switch / Select Line" type="button" class="btn switch-line-btn"
+                            onclick="onSwitchLine()">⇅</button>
+                        <button title="Unselect Line" type="button" class="btn unslct-line-btn"
+                            onclick="onUnselectLines()">☒</button>
+                        <button title="Lift Line" type="button" class="btn lift-btn" onclick="onLiftLine()">⬆</button>
+                        <button title="Lower Line" type="button" class="btn lower-line-btn"
+                            onclick="onLowerLine()">⬇</button>
+                    </div>
+                    <br>
+                    <div class="add-remove-btns">
+                        <button title="Add Line" type="button" class="btn add-line-btn" onclick="onAddLine()">➕</button>
+                        <button title="Remove Line" type="button" class="btn remove-line-btn"
+                            onclick="onRemoveLine()">➖</button>
+                    </div>
+                    <br>
+                    <span class="color-font-span">Color & Font:</span>
+                    <div class="color-font-btns">
+                        <br>
+                        <input class="btn" id="color" type="color" value="#ffffff"
+                            oninput="onChangeTxtColor(this.value)" />
+                        <select class="font-btn" id="font-select" onchange="onSetFont()">
+                            <option value="Impact">Impact</option>
+                            <option value="Arial">Arial</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                        </select>
+                    </div>
+                    <label class="font-size-label" for="font-size">+/- Font Size:</label>
+                    <div class="font-size">
+                        <form onsubmit="onChangeFontSize(event,this)">
+                            <input title="min - 25 max - 50" type="number" name="font-size" min="25" max="50" step="5"
+                                value="25">
+                            <button class="set-btn" type="submit">Set</button>
+                        </form>
+                    </div>
+                    <span class="emoji-span">Add Emoji:</span>
+                    <div class="emojis">
+                        <div class="emoji-btn-container">
+                            <button class="emoji-btn" type="button" onclick="onAddLine('😭')">😭</button>
+                            <button class="emoji-btn" type="button" onclick="onAddLine('🤢')">🤢</button>
+                            <button class="emoji-btn" type="button" onclick="onAddLine('😃')">😃</button>
+                            <button class="emoji-btn" type="button" onclick="onAddLine('😡')">😡</button>
+                            <button class="emoji-btn" type="button" onclick="onAddLine('😍')">😍</button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="canvas-container">
+                    <canvas onclick=" canvasClicked(event)" class="canvas" width="500" height="500"
+                        style="outline: 1px solid rgb(108, 34, 34)"></canvas>
+                </div>
+                <div class="inputs">
+                    <button type="button" class="s-btn save-btn" onclick="onSaveCanvas()">Save</button>
+                    <button class="s-btn upload-btn" onclick="onUploadImg()">
+                        Upload Meme to Facebook!
+                    </button>
+
+                    <a href="#" class="download-btn" onclick="downloadImg(this)" download="my-img.jpg">Download as
+                        jpeg</a>
+                </div>
+        </section>
+        <div hidden class="saved-area">
+            <section hidden class="saved">
+                <span>Have a look at your creations:</span>
+                <div class="saved-container"></div>
+            </section>
+        </div>
+        <div hidden class="about-area">
+            <p>This is a Meme Generator Program,<br> it was developed between 15-18/02/2023 as a "Sprint 2
+                Project" as a part of my studies in Coding Academy.</p>
+            <br>
+            <p> You start by choosing a Meme template to work on,<br> you can add unlimited lines of text and place them
+                anywhere you want,<br>you can also remove any added line that is not one of the two meme template lines
+                by clicking on it, and then clicking on the "Remove Line" button<br>If you wish to create a one line
+                meme, you can select the second line and delete it's content.<br>You can change the lines font size and
+                color using the buttons and you can choose
+                one of three fonts available as the default one is the "Impact" font that's known for being a meme
+                font.<br>You can locate the lines where ever you'd like via using the buttons or by
+                dragging
+                them around the meme image freely!<br> you can select a specific line by clicking on the "Switch Line"
+                button or by simply clicking on it.<br>You can unselect a line in order to stop editing it or in order
+                to remove the edit indicators (Important before saving/downloading/uploading) by clicking the "Unselect
+                Line" button or by clicking outside of the
+                line.<br> you can add one out of 5 selected emojis <br> you can download
+                your creation,
+                save it to your creations' gallery and even upload it to facebook for everyone to see!</p>
+            <br>
+            <p>Enjoy! <br> Amit Cohen.</p>
+            </section>
+        </div>
+    </div>
+    <div class="footer full">
+        <ul class="clean-list">
+            <li>by Amit Cohen</li>
+            <li>coffeerights 2023</li>
+        </ul>
     </div>
 
+    <script src="js/services/storage-service.js"></script>
     <script src="js/services/meme-service.js"></script>
     <script src="js/gallery-controller.js"></script>
     <script src="js/meme-controller.js"></script>

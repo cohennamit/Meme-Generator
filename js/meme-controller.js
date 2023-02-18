@@ -14,26 +14,11 @@ function renderMeme() {
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         for (let i = 0; i < meme.lines.length; i++) {
-            // let x
-            // let y
-            // if (i === 0) {
-            //     x = 250
-            //     y = 30
-            // } else if (i === 1) {
-            //     x = 250
-            //     y = 470
-            // } else {
-            //     x = 250
-            //     y = 250
-            // }
-            // drawText(meme.lines[i].txt, x, y, i)
             drawText(meme.lines[i].txt, meme.lines[i].x, meme.lines[i].y, i)
             if (meme.selectedLineIdx !== -1) {
 
                 if (i === meme.selectedLineIdx) {
-                    // drawLine(0, y + 22)
                     drawLine(0, meme.lines[i].y + 22)
-                    // drawLine(0, y - 22)
                     drawLine(0, meme.lines[i].y - 22)
                 }
             }
@@ -119,11 +104,15 @@ function onCanvasClicked(ev) {
     renderMeme()
 }
 
-function onAddLine() {
-    addLine()
+function onAddLine(value) {
+    addLine(value)
     renderMeme()
 }
 function onRemoveLine() {
     removeLine()
     renderMeme()
+}
+
+function onSaveCanvas() {
+    saveCanvas()
 }
