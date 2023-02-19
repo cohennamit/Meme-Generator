@@ -19,7 +19,7 @@ body {
 }
 
 .gallery-img {
-    transition: 0.25s;
+    transition: 0.15s;
     border-radius: 5px;
     height: 200px;
 }
@@ -121,12 +121,13 @@ body {
     cursor: pointer;
     font-size: 1.6rem;
     border-radius: 5px;
-    color: whitesmoke;
+    color: rgb(195, 195, 195);
     background-color: rgb(40, 40, 40);
     border: 2px solid rgb(30, 30, 30);
 }
 
 .s-btn:hover {
+    color: rgb(195, 195, 195);
     cursor: pointer;
     border-radius: 5px;
     background-color: rgb(40, 40, 40);
@@ -213,6 +214,7 @@ body {
 .set-btn:hover,
 .font-btn:hover,
 .download-btn:hover {
+    color: rgb(195, 195, 195);
     cursor: pointer;
     border-radius: 5px;
     background-color: rgb(40, 40, 40);
