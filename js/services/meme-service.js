@@ -220,3 +220,34 @@ function createGalleryImage(dataURL) {
         url: dataURL
     }
 }
+
+function resetMeme() {
+    gMeme = {
+        selectedImgId: 1,
+        selectedLineIdx: 0,
+        lines: [
+            {
+                idx: 0,
+                txt: 'Line 1',
+                size: 25,
+                align: 'left',
+                color: 'white',
+                font: 'Impact',
+                x: 250,
+                y: 30,
+                isDragged: false,
+            },
+            {
+                idx: 1,
+                txt: 'Line 2',
+                size: 25,
+                align: 'left',
+                color: 'white',
+                font: 'Impact',
+                x: 250,
+                y: 470,
+                isDragged: false,
+            },
+        ]
+    }
+}

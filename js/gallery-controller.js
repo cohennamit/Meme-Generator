@@ -23,9 +23,15 @@ function renderSavedGallery() {
 }
 
 function onImgSelect(imageId) {
-    // let elGallery = document.querySelector('.gallery')
-    // let elEditor = document.querySelector('.editor')
-    // let elSaved = document.querySelector('.saved')
+    gElGallery.hidden = true
+    gElEditor.hidden = false
+    gElSaved.hidden = true
+    resetMeme()
+    setImg(imageId)
+    renderMeme()
+}
+
+function onSavedImgSelect(imageId) {
     gElGallery.hidden = true
     gElEditor.hidden = false
     gElSaved.hidden = true
