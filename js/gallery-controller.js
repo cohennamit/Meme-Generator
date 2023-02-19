@@ -32,6 +32,7 @@ function onImgSelect(imageId) {
 }
 
 function onSavedImgSelect(imageId) {
+    console.log('imageId', imageId)
     gElGallery.hidden = true
     gElEditor.hidden = false
     gElSaved.hidden = true

@@ -25,6 +25,7 @@ body {
 }
 
 .gallery-img:hover {
+    outline: 3px solid rgb(68, 27, 27);
     cursor: pointer;
     height: 200px;
     border-radius: 20px;
