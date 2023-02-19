@@ -122,31 +122,39 @@ function getEvPos(ev) {
 }
 
 function revealSavedGallery() {
-    // var elGallery = document.querySelector('.gallery')
-    // var elEditor = document.querySelector('.editor')
-    // var elSaved = document.querySelector('.saved-container')
+    var elAboutSpan = document.querySelector('.about-span')
+    var elSavedSpan = document.querySelector('.saved-span')
     gElGallery.hidden = true
     gElEditor.hidden = true
     gElSaved.hidden = false
     gElAbout.hidden = true
+    elSavedSpan.classList.add('active')
+    elAboutSpan.classList.remove('active')
+
     renderSavedGallery()
 }
 
 
 function revealGallery() {
-    // var elGallery = document.querySelector('.gallery')
-    // var elEditor = document.querySelector('.editor')
-    // var elSaved = document.querySelector('.saved-container')
+    var elAboutSpan = document.querySelector('.about-span')
+    var elSavedSpan = document.querySelector('.saved-span')
     gElGallery.hidden = false
     gElEditor.hidden = true
     gElSaved.hidden = true
     gElAbout.hidden = true
+    elSavedSpan.classList.remove('active')
+    elAboutSpan.classList.remove('active')
     renderGallery()
 }
 
 function revealAbout() {
+    var elAboutSpan = document.querySelector('.about-span')
+    var elSavedSpan = document.querySelector('.saved-span')
     gElGallery.hidden = true
     gElEditor.hidden = true
     gElSaved.hidden = true
     gElAbout.hidden = false
+
+    elAboutSpan.classList.add('active')
+    elSavedSpan.classList.remove('active')
 }
